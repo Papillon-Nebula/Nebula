@@ -1,0 +1,82 @@
+.hello{
+    width: auto;
+    text-align: center;
+}
+
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px; 
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    /* background-image: url(/static/imge/凯洛伦.jpg); */
+    background-repeat: no-repeat;
+}
+
+
+#bigBox{
+    margin: auto;
+    margin-top: 200px;
+    padding: 20px 50px;
+    background-color: #00000090;
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    text-align: center;
+    /* opacity: 0.5; */
+    /* background-color:rgba(192, 28, 28, 0.7); */
+}
+
+#bigBox h1{
+    color: white;
+}
+
+#bigBox .inputBox{
+    margin-top: 50px;
+}
+
+#bigBox .inputBox .inputText{
+    margin-top: 20px;
+}
+
+#bigBox .inputBox .inputText input{
+    border: 0;
+    padding: 10px 10px;
+    border-bottom: 1px solid white;
+    background-color: #000000;
+    color: white;
+}
+
+#bigBox .inputBox .inputButton{
+    border: 0;
+    width: 150px;
+    height: 25px;
+    color: white;
+    margin-top: 30px;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609e 66%, #ee609e 100%);
+}

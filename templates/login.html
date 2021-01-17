@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M2-9 蝴蝶星云</title>
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename ='./css/style.css')}}"> -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="Box">
+    <div id='bigBox'>
+        <h1>LOGIN</h1>
+
+        <form action="/login" method="POST" class="inputBox">
+            <div class="inputText">
+                <input type="username" placeholder="Username">
+            </div>
+
+            <div class="inputText">
+                <input type="password" placeholder="Password">
+            </div>{{error}}
+
+            <div class="inputText">
+                <input type="submit" class="inputButton" value="LOGIN">
+            </div>  
+        </form>
+
+        
+        
+    </div>
+</body>
+
+</html>
