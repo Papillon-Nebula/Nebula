@@ -7,7 +7,10 @@ from sqlalchemy.engine.base import Engine
 
 
 engine = create_engine(
-    "mysql+pymysql://debian-sys-maint:NbiTAGtSBbVbjyNI@127.0.0.1:3306/nebula?charset=utf8",
+    "mysql+pymysql://debian-sys-maint:"+
+    # "NbiTAGtSBbVbjyNI"
+    "cFELvF0gljCg4nOK"
+    "@localhost:3306/nebula?charset=utf8",
     max_overflow=0,
     pool_size=5,
     pool_timeout=30,
@@ -18,6 +21,6 @@ conn=engine.raw_connection()
 
 cursor = conn.cursor()
 
-cursor.execute('select * from Nebula')
+cursor.execute('select * from members')
 res = cursor.fetchall()
 print(res)
