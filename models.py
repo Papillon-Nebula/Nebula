@@ -12,32 +12,36 @@ class User(Base):
     ctime = Column(DateTime, default=datetime.datetime.now)
     extra = Column(Text, nullable=True)
 
-    # __table_args__ = (
-    #     UniqueConstraint('id','name', name='uix_id_name'),
-    #     Index('ix_id_name','name','email')
-    # )
+    __table_args__ = (
+        UniqueConstraint('id','name', name='uix_id_name'),
+        Index('ix_id_name','name','email')
+    )
 
 def create_table():
     engine = create_engine(
-    "mysql+pymysql://debian-sys-maint:NbiTAGtSBbVbjyNI@127.0.0.1:3306/nebula?charset=utf8",
-    max_overflow=0,
-    pool_size=5,
-    pool_timeout=30,
-    pool_recycle=-1
+        "mysql+pymysql://debian-sys-maint:"+
+        # "NbiTAGtSBbVbjyNI"
+        "cFELvF0gljCg4nOK"
+        "@localhost:3306/nebula?charset=utf8",
+        max_overflow=0,
+        pool_size=5,
+        pool_timeout=30,
+        pool_recycle=-1
     )
-
     Base.metadata.create_all(engine)
 
 
 def drop_table():
     engine = create_engine(
-    "mysql+pymysql://debian-sys-maint:NbiTAGtSBbVbjyNI@127.0.0.1:3306/nebula?charset=utf8",
-    max_overflow=0,
-    pool_size=5,
-    pool_timeout=30,
-    pool_recycle=-1
+        "mysql+pymysql://debian-sys-maint:"+
+        # "NbiTAGtSBbVbjyNI"
+        "cFELvF0gljCg4nOK"
+        "@localhost:3306/nebula?charset=utf8",
+        max_overflow=0,
+        pool_size=5,
+        pool_timeout=30,
+        pool_recycle=-1
     )
-
     Base.metadata.drop_all(engine)
 
 if __name__ == "__main__":

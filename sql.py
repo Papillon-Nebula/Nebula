@@ -4,6 +4,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 # from sqlalchemy import engine
 from sqlalchemy.engine.base import Engine
+from sqlalchemy.orm import sessionmaker
 
 
 engine = create_engine(
@@ -24,3 +25,8 @@ cursor = conn.cursor()
 cursor.execute('select * from members')
 res = cursor.fetchall()
 print(res)
+
+
+Session = sessionmaker(bink=engine)
+
+Session = Session()
