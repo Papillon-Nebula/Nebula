@@ -23,10 +23,5 @@ conn=engine.raw_connection()
 cursor = conn.cursor()
 
 cursor.execute('select * from members')
-res = cursor.fetchall()
-print(res)
-
-
-Session = sessionmaker(bink=engine)
-
-Session = Session()
+ret = cursor.fetchall()
+print(ret)

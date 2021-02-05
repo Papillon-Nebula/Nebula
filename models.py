@@ -1,10 +1,15 @@
 import datetime
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index
+from sqlalchemy.orm import session
+from sqlalchemy.orm.session import sessionmaker
+from sqlalchemy.orm import scoped_session
+from sqlalchemy.sql.functions import user
+
 Base = declarative_base()
 
-class User(Base):
+class Users(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     name = Column(String(32), index=True, nullable=False)
@@ -15,6 +20,17 @@ class User(Base):
     __table_args__ = (
         UniqueConstraint('id','name', name='uix_id_name'),
         Index('ix_id_name','name','email')
+    )
+
+engine = create_engine(
+        "mysql+pymysql://debian-sys-maint:"+
+        # "NbiTAGtSBbVbjyNI"
+        "cFELvF0gljCg4nOK"
+        "@localhost:3306/nebula?charset=utf8",
+        max_overflow=0,
+        pool_size=5,
+        pool_timeout=30,
+        pool_recycle=-1
     )
 
 def create_table():
@@ -44,6 +60,12 @@ def drop_table():
     )
     Base.metadata.drop_all(engine)
 
+
+session = sessionmaker(engine)
+session = scoped_session(session)
+ret = session.query(Users.id,Users.name).all()
+print(ret)
+
 if __name__ == "__main__":
-    # create_table()
-    drop_table()
+    create_table()
+    # drop_table()
