@@ -61,10 +61,10 @@ def drop_table():
     Base.metadata.drop_all(engine)
 
 
-session = sessionmaker(engine)
-session = scoped_session(session)
-ret = session.query(Users.id,Users.name).all()
-print(ret)
+# session = sessionmaker(engine)
+# session = scoped_session(session)
+# ret = session.query(Users.id,Users.name).all()
+# print(ret)
 
 if __name__ == "__main__":
     create_table()

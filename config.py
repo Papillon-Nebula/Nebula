@@ -15,19 +15,8 @@ engine = create_engine(
     # pool_recycle=-1
 )
 
-# print(engine)
-
-# Session = sessionmaker(bind=engine)
-# # Base = declarative_base()
-# db_session = scoped_session(session)
-
-# ret = db_session.query(Users).first()
-# print(ret)
-
 session = sessionmaker(engine)
 session = scoped_session(session)
 
-session.query(Users).filter(Users.id==1).update({"name":"papillon-nebula"})
-ret = session.query(Users.id,Users.name).all()
-print(ret)
-session.commit()
+if __name__ == "_main_":
+    pass
