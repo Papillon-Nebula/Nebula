@@ -2,7 +2,7 @@ from flask import Flask, app, render_template, request, redirect
 from flask.globals import session
 from flask.helpers import flash, url_for
 import cv2
-from models import Users
+from module.models import Users
 import config
 import datetime
 from sqlalchemy import create_engine, engine
@@ -12,11 +12,17 @@ from sqlalchemy.orm import session
 from sqlalchemy.orm.session import sessionmaker
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.sql.functions import user
+import settings
+from more.face import face
 
 
-app = Flask(__name__)
+app = Flask(__name__, 
+# template_folder='templates' , static_url_path='/',static_folder='static'
+)
 # app.config['SECRET_KEY'] = '123'
 app.secret_key = '123'
+print(app.config)   # 查看配置文件
+app.config.from_object(settings)
 
 
 # @app.route("/")
@@ -35,7 +41,7 @@ def login():
     docstring
     """
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('login.html') 
     else:
         request.method == 'POST'
         username = request.form.get("username")
@@ -51,40 +57,10 @@ def login():
             # return '登录失败'
 
 
-def face():
-    """
-    docstring
-    """
-    cap = cv2.VideoCapture(0)
-    faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-    while (True):
-    # 循环捕获每一帧
-        ret, frame = cap.read()
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = faceCascade.detectMultiScale(
-            gray,
-            scaleFactor=1.1,
-            minNeighbors=5,
-            minSize=(30, 30)
-        )
-        print("发现{0} 人脸!".format(len(faces)))
-        if len(faces) != 0:
-            return True
-        else:
-            return False
-        for (x, y, w, h) in faces:
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        cv2.imshow('frame', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):  # 按键q停止显示
-            break
-
-
-# 关闭
-    # cap.release()
-    # cv2.destroyAllWindows()
-
-# face()
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        # host='0.0.0.0', port='8080',       # IP定义为 0.0.0.0 后，可外网通过IP地址访问，默认只能本机访问
+        # debug=True
+        )      

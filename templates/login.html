@@ -16,42 +16,39 @@
         }
         .login{
             /* text-align:center; */
-            border: 2px solid;
-            border-color:#808080;
-            border-radius: 25px;
-            padding: 35px;
+            /* border-color:#808080; */
+            /* border-radius: 25px; */
+            /* padding: 35px; */
             /* margin: 150px;; */
-            margin-top: 250px;
-            /* margin-left: 30%; */
-            /* margin-right: auto; */
-            /* margin-right: 40%;  */
-            /* left: 150px; */
+            margin-top: 200px;
             opacity:0.8;
         } 
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xs-offset-2 col-md-offset-4 col-lg-offset-8">
-            <form class="login">
-                <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <div class="login">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4" style="height: auto; border: solid 2px #808080; border-radius: 25px;" >
+                    <form style="margin: 30px;">
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
         </div>
-
-
     </div>
     
 </body>
