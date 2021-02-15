@@ -22,7 +22,7 @@ class Users(Base):
         Index('ix_id_name','name','email')
     )
 
-engine = create_engine(
+    engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+
         # "NbiTAGtSBbVbjyNI"
         "cFELvF0gljCg4nOK"
@@ -65,6 +65,15 @@ def drop_table():
 # session = scoped_session(session)
 # ret = session.query(Users.id,Users.name).all()
 # print(ret)
+
+
+# session = sessionmaker(engine)
+# session = scoped_session(session)
+
+session.query(Users).filter(Users.id==1).update({"name":"papillon-nebula"})
+ret = session.query(Users.id,Users.name).all()
+print(ret)
+session.commit()
 
 if __name__ == "__main__":
     create_table()
