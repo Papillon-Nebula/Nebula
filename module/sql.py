@@ -10,7 +10,7 @@ def ret():
     engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+
         # "NbiTAGtSBbVbjyNI"
-        "cFELvF0gljCg4nOK"
+        "eTiRzkxyAgOtANbJ"
         "@localhost:3306/nebula?charset=utf8",
         max_overflow=0,
         pool_size=5,

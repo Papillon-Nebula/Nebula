@@ -25,7 +25,7 @@ class Users(Base):
     engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+
         # "NbiTAGtSBbVbjyNI"
-        "cFELvF0gljCg4nOK"
+        "eTiRzkxyAgOtANbJ"
         "@localhost:3306/nebula?charset=utf8",
         max_overflow=0,
         pool_size=5,
@@ -37,7 +37,7 @@ def create_table():
     engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+
         # "NbiTAGtSBbVbjyNI"
-        "cFELvF0gljCg4nOK"
+        "eTiRzkxyAgOtANbJ"
         "@localhost:3306/nebula?charset=utf8",
         max_overflow=0,
         pool_size=5,
@@ -51,7 +51,7 @@ def drop_table():
     engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+
         # "NbiTAGtSBbVbjyNI"
-        "cFELvF0gljCg4nOK"
+        "eTiRzkxyAgOtANbJ"
         "@localhost:3306/nebula?charset=utf8",
         max_overflow=0,
         pool_size=5,
