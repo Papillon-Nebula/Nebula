@@ -3,7 +3,7 @@ from flask.globals import session
 from flask.helpers import flash, url_for
 import cv2
 # from module.models import Users
-import config
+# import config
 import datetime
 from sqlalchemy import create_engine, engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -11,7 +11,7 @@ from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, Uniq
 from sqlalchemy.orm import session
 from sqlalchemy.orm.session import sessionmaker
 from sqlalchemy.orm import scoped_session
-from sqlalchemy.sql.functions import user
+from sqlalchemy.sql.functions import mode, user
 import settings
 from more.face import face
 
@@ -72,16 +72,17 @@ def login():
 
 # 定制404错误页
 @app.errorhandler(404)
-def page_not_found():
-    return '网页出错了！'
+def page_not_found(e):
+    # return '网页出错了！'
+    return render_template('404.html')
 
 
 
 if __name__ == "__main__":
     from controller.demo import *
-    app.register_blueprint()
+    app.register_blueprint(demo)
 
     app.run(
-        # host='0.0.0.0', port='8080',       # IP定义为 0.0.0.0 后，可外网通过IP地址访问，默认只能本机访问
-        # debug=True
+        host='0.0.0.0', port='8080',       # IP定义为 0.0.0.0 后，可外网通过IP地址访问，默认只能本机访问
+        debug=True
         )      
