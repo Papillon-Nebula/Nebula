@@ -6,6 +6,8 @@ from sqlalchemy.orm import session
 from sqlalchemy.orm.session import sessionmaker
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.sql.functions import user
+from flask import Blueprint
+models = Blueprint('models',__name__)
 
 Base = declarative_base()
 
@@ -23,7 +25,7 @@ class Users(Base):
     )
 
     engine = create_engine(
-        "mysql+pymysql://debian-sys-maint:"+
+        "mysql+pymysql://debian-sys-maint:"+    
         # "NbiTAGtSBbVbjyNI"
         "eTiRzkxyAgOtANbJ"
         "@localhost:3306/nebula?charset=utf8",
@@ -70,10 +72,10 @@ def drop_table():
 # session = sessionmaker(engine)
 # session = scoped_session(session)
 
-session.query(Users).filter(Users.id==1).update({"name":"papillon-nebula"})
-ret = session.query(Users.id,Users.name).all()
-print(ret)
-session.commit()
+# session.query(Users).filter(Users.id==1).update({"name":"papillon-nebula"})
+# ret = session.query(Users.id,Users.name).all()
+# print(ret)
+# session.commit()
 
 if __name__ == "__main__":
     create_table()

@@ -1,8 +1,8 @@
 from sqlalchemy.ext.declarative.api import declarative_base
 from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm.session import sessionmaker
-import models
 from sqlalchemy import engine,create_engine
+from module.models import Users
 
 engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+

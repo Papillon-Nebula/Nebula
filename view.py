@@ -46,6 +46,7 @@ from flask import Flask
 from flask import request, redirect, render_template, session, g, url_for, Blueprint
 from dataclasses import dataclass, make_dataclass
 from flask.helpers import make_response
+from controller import demo
 
 from flask.wrappers import Response
 
