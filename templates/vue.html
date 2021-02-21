@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUE-demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <table width = '500' border="1" align="center" cellpadding = '5'>
+        <tr>
+            <td width = '20%'>编号</td>
+            <td width = '30%'>书名</td>
+            <td width = '30%'>作者</td>
+            <td width = '20%'>价格</td>
+        </tr>
+    
+        <tbody id = 'booklist'>
+            <tr v-for = "book in content">
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.price}}</td>
+            </tr>
+        </tbody>   
+    </table> 
+    <script>
+        var books = [
+            {'id':1, 'title':'php教程', 'author': '张三', 'price':52},
+            {'id':2, 'title':'python教程', 'author': '张三', 'price':52},
+            {'id':3, 'title':'java教程', 'author': '张三', 'price':52},
+        ];  
+        var v = new Vue({
+            el: '#booklist',
+            data: {content: books}
+        })
+    
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-LCPyFKQyML7mqtS+4XytolfqyqSlcbB3bvDuH9vX2sdQMxRonb/M3b9EmhCNNNrV" crossorigin="anonymous"></script>
+</body>
+</html>

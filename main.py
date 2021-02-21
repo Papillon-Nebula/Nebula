@@ -98,8 +98,8 @@ if __name__ == "__main__":
     from module.models import *
     from controller.login import *
     app.register_blueprint(index)
-    app.register_blueprint(loginer)
-    app.register_blueprint(models)
+    app.register_blueprint(login)
+    # app.register_blueprint(models)
 
     app.run(
         # host='0.0.0.0', port='8080',       # IP定义为 0.0.0.0 后，可外网通过IP地址访问，默认只能本机访问
