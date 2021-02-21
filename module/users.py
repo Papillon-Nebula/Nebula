@@ -1,4 +1,4 @@
-from view import User
+# from view import User
 from sqlalchemy import Table, MetaData
 from common.database import dbconnect
 import time, random

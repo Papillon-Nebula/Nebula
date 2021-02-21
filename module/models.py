@@ -26,7 +26,7 @@ class Users(Base):
 
     engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+    
-        # "NbiTAGtSBbVbjyNI"
+        # "qhpG5ItfL6ybaSaM"
         "eTiRzkxyAgOtANbJ"
         "@localhost:3306/nebula?charset=utf8",
         max_overflow=0,

@@ -28,7 +28,7 @@ print(app.config)   # 查看配置文件
 app.config.from_object(settings)
 
 # 使用集成方法处理 SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://debian-sys-maint:eTiRzkxyAgOtANbJ@localhost:3306/nebula?charset=utf8' # "NbiTAGtSBbVbjyNI"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://debian-sys-maint:qhpG5ItfL6ybaSaM@localhost:3306/nebula?charset=utf8' # "NbiTAGtSBbVbjyNI"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)   # 实例化 db 对象
         

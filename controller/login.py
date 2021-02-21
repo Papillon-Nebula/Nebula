@@ -3,9 +3,15 @@ from flask.globals import session
 from sqlalchemy.sql.operators import is_precedent
 from module.users import Users
 from main import db
+from common.utility import ImageCode
 
 
 login = Blueprint('login', __name__)
+
+@login.route('/vcode')
+def vcode():
+    code, bstring = ImageCode()
+
 
 @login.route('/login', methods=['POST','GET'])   # register and login
 def login():
