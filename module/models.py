@@ -11,6 +11,17 @@ models = Blueprint('models',__name__)
 
 Base = declarative_base()
 
+engine = create_engine(
+        "mysql+pymysql://debian-sys-maint:"+    
+        "qhpG5ItfL6ybaSaM"
+        # "eTiRzkxyAgOtANbJ"
+        "@localhost:3306/nebula?charset=utf8",
+        max_overflow=0,
+        pool_size=5,
+        pool_timeout=30,
+        pool_recycle=-1
+    )
+
 class Users(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
@@ -24,42 +35,13 @@ class Users(Base):
         Index('ix_id_name','name','email')
     )
 
-    engine = create_engine(
-        "mysql+pymysql://debian-sys-maint:"+    
-        # "qhpG5ItfL6ybaSaM"
-        "eTiRzkxyAgOtANbJ"
-        "@localhost:3306/nebula?charset=utf8",
-        max_overflow=0,
-        pool_size=5,
-        pool_timeout=30,
-        pool_recycle=-1
-    )
+    
 
 def create_table():
-    engine = create_engine(
-        "mysql+pymysql://debian-sys-maint:"+
-        # "NbiTAGtSBbVbjyNI"
-        "eTiRzkxyAgOtANbJ"
-        "@localhost:3306/nebula?charset=utf8",
-        max_overflow=0,
-        pool_size=5,
-        pool_timeout=30,
-        pool_recycle=-1
-    )
     Base.metadata.create_all(engine)
 
 
 def drop_table():
-    engine = create_engine(
-        "mysql+pymysql://debian-sys-maint:"+
-        # "NbiTAGtSBbVbjyNI"
-        "eTiRzkxyAgOtANbJ"
-        "@localhost:3306/nebula?charset=utf8",
-        max_overflow=0,
-        pool_size=5,
-        pool_timeout=30,
-        pool_recycle=-1
-    )
     Base.metadata.drop_all(engine)
 
 

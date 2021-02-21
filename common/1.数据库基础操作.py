@@ -19,7 +19,7 @@ from sqlalchemy.orm import sessionmaker
 """
 
 # 第一步：连接到MySQL数据库
-conn = pymysql.connect(host = 'localhost',port = 3306, user = 'debian-sys-maint', password = 'eTiRzkxyAgOtANbJ', charset = 'utf8', database = 'nebula', autocommit = True)
+conn = pymysql.connect(host = 'localhost',port = 3306, user = 'debian-sys-maint', password = 'qhpG5ItfL6ybaSaM', charset = 'utf8', database = 'nebula', autocommit = True)
 # 第二步：执行SQL语句
 # 1、实例化一个游标对象； 2、定义SQL语句； 3、通过游标执行； 4、处理执行结果；
 cursor = conn.cursor()

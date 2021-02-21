@@ -17,7 +17,7 @@ class MySQL:
     def __init__(self) -> None:
         # 实例化即创建与数据库之间的连接
         # 第一步：连接到MySQL数据库
-        conn = pymysql.connect(host = 'localhost',port = 3306, user = 'debian-sys-maint', password = 'eTiRzkxyAgOtANbJ', charset = 'utf8', database = 'nebula', autocommit = True)
+        conn = pymysql.connect(host = 'localhost',port = 3306, user = 'debian-sys-maint', password = 'qhpG5ItfL6ybaSaM', charset = 'utf8', database = 'nebula', autocommit = True)
         self.cursor = conn.cursor(DictCursor)
         
     # 封装基础查询语句

@@ -6,7 +6,7 @@ from main import db
 from common.utility import ImageCode
 
 
-login = Blueprint('login', __name__)
+login = Blueprint('login', __name__,)
 
 @login.route('/vcode')
 def vcode():
