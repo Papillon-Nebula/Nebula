@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, Uniq
 from sqlalchemy.orm import session
 from sqlalchemy.orm.session import sessionmaker
 from sqlalchemy.orm import scoped_session
+from sqlalchemy.sql.expression import false
 from sqlalchemy.sql.functions import user
 from flask import Blueprint
 models = Blueprint('models',__name__)
@@ -27,6 +28,7 @@ class Users(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(32), index=True, nullable=False)
     email = Column(String(32), unique=True)
+    password = Column(String(32), nullable=False)
     ctime = Column(DateTime, default=datetime.datetime.now)
     extra = Column(Text, nullable=True)
 

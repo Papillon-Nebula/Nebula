@@ -87,5 +87,5 @@ if __name__ == '__main__':
     # result0 = user.select()
     # print(result)
     # print(result0)
-    user = Users(name = 'mike2', email = 'papillon', extra = 'qq:1057324546')
+    user = Users(name = 'mike', email = 'papillon', password = '111', ctime = '2021-02-22 01:14:58', extra = 'qq:1057324546')
     user.insert()

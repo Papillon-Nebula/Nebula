@@ -1,7 +1,9 @@
 # from view import User
+from flask.blueprints import Blueprint
 from sqlalchemy import Table, MetaData
 from common.database import dbconnect
 import time, random
+users = Blueprint('models',__name__)
 
 dbsession, md ,DBase = dbconnect()
 
