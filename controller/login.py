@@ -1,17 +1,35 @@
-from flask import Blueprint, request, render_template, redirect
+from flask import Blueprint, request, render_template, redirect, make_response
 from flask.globals import session
 from sqlalchemy.sql.operators import is_precedent
 from module.users import Users
 from main import db
-from common.utility import ImageCode
+from common.utility import ImageCode, gen_email_code, send_email
 import hashlib
+import re
 
 
 loginer = Blueprint('login', __name__,)
 
 @loginer.route('/vcode')
 def vcode():
-    code, bstring = ImageCode()
+    code, bstring = ImageCode().get_code()
+    response = make_response(bstring)
+    response.headers['Content-Type'] = 'image/jpeg'
+    session['vcode'] = code.lower()
+    return response
+
+@loginer.route('/ecode', methods=['POST'])
+def ecode():
+    email = request.form.get('email')
+    if not re.match('.+@.+\..+', email):
+        return 'email-invalid'
+    code = gen_email_code()
+    print(code)
+    try:
+        send_email('papillon-nebula@outlook.com', code)
+        return 'send-pass'
+    except:
+        return 'send-fail'
 
 
 @loginer.route('/login', methods=['POST','GET'])   # register and login

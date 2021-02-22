@@ -54,3 +54,37 @@ class ImageCode():
         image.save(buf, 'jpeg')
         bstring = buf.getvalue()
         return code, bstring
+
+# 发送邮箱验证码
+from smtplib import SMTP_SSL, SMTP
+from email.mime.text import MIMEText
+from email.header import Header
+
+# 发送QQ邮箱验证码， 参数为收件箱地址和随机生成的验证码
+def send_email(receiver, ecode):
+    sender = 'Nebula <1057324546@qq.com>'  # 邮箱地址和发件人签名
+    # 定义发送邮件的内容， 支持HTML标签和CSS样式
+    content = f"<br/>欢迎来到NEBULA的世界，这里有浩瀚的星辰和美好的心灵，您的邮箱验证码是：<span style = 'color: red; font-size: 20px;'>{ecode}</span> ，请复制到注册窗口进行验证，开启你的星际之旅！"
+    # 实例化邮件对象， 并指定邮件的关键信息
+    message = MIMEText(content, 'html', 'utf-8')
+    # 指定邮件的标题， 同样使用utf-8编码
+    message['Subject'] = Header('欢迎注册Nebula，请收好您的注册验证码', 'utf-8')
+    message['From'] = sender        # 指定发件人信息
+    message['To'] = receiver        # 指定收件人邮箱地址
+
+    smtpObj = SMTP_SSL('smtp.qq.com')       # 建议与QQ邮件服务器的连接
+    # smtpObj = SMTP('smtp.qq.com')       # 不是 SSL 方式连接的邮箱
+    # 通过你的邮箱账号和获取到的授权码登录QQ邮箱
+    smtpObj.login(user='1057324546@qq.com', password='dkjjmqheyetebedd')      # 密码不正确需调整
+    # 指定发件人，收件人和邮件内容
+    smtpObj.sendmail(sender, receiver, str(message))
+    smtpObj.quit()
+
+# 生成6为随机字符串作为邮箱验证码
+def gen_email_code():
+    str = random.sample(string.ascii_letters + string.digits, 6)
+    return ''.join(str)
+
+# code = gen_email_code()
+# print(code)
+# send_email('papillon-nebula@outlook.com', code)
