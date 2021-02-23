@@ -8,7 +8,7 @@ from sqlalchemy.orm import scoped_session
 from sqlalchemy.sql.expression import false
 from sqlalchemy.sql.functions import user
 from flask import Blueprint
-models = Blueprint('models',__name__)
+# models = Blueprint('models',__name__)
 
 Base = declarative_base()
 
