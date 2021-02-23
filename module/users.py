@@ -1,9 +1,8 @@
-# from view import User
 from flask.blueprints import Blueprint
 from sqlalchemy import Table, MetaData
 from common.database import dbconnect
 import time, random
-users = Blueprint('models',__name__)
+# users = Blueprint('models',__name__)
 
 dbsession, md ,DBase = dbconnect()
 
@@ -12,7 +11,7 @@ class Users(DBase):
 
     #查询用户名，可用于注册时判断用户名是否已注册，也可用于登录校验
     def find_by_username(self, username):
-        result = dbsession.query(Users).filter_by(username=username).all()
+        result = dbsession.query(Users).filter_by(name=username).all()
         print(result)
         return result
 
@@ -24,10 +23,17 @@ class Users(DBase):
         now = time.strftime('%Y-%m-%d %H:%M:%S')
         nickname = username.split('@')[0]       #默认将邮箱账号前缀作为呢称
         avatar = str(random.randint(1,9))      #从15张头像图片中随机选择一张
-        user = Users(username=username, password=password, role='user', nickname=nickname, avatar=avatar+'.jpg', createtime=now, updatetime=now)
+        user = Users(name=username, password=password
+        # , role='user', nickname=nickname, avatar=avatar+'.jpg', createtime=now, updatetime=now
+        )
         dbsession.add(user)
         dbsession.commit()
         return user
+
+    def find_password_by_username(self, username):
+        result = dbsession.query(Users.password).filter_by(name=username).first()
+        return result
+
 
 
     # def find_by_userid(self, userid):

@@ -1,8 +1,8 @@
 from flask import Blueprint, request, render_template, redirect, make_response
 from flask.globals import session
 from sqlalchemy.sql.operators import is_precedent
-from module.users import Users
-from main import db
+
+from app import db
 from common.utility import ImageCode, gen_email_code, send_email
 import hashlib
 import re
@@ -38,14 +38,22 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     elif request.method == 'POST':
+        from module.users import Users
         user = Users()
+        print(user)
         username = request.form.get('username').strip()
         password = request.form.get('password').strip()
         # ecode = request.form.get('ecode').strip()
         
         # 验证用户是否已经注册
         if len(user.find_by_username(username))>0:
-            return 'user-repeated!'
+            print(user.find_password_by_username(username)[0])
+            password = hashlib.md5(password.encode()).hexdigest()
+            print(password)
+            if password != user.find_password_by_username(username)[0]:
+                return '该用户已经注册过了!'
+            else:
+                return username + '欢迎回来!'
         
         else:
             # 实现注册功能
@@ -53,12 +61,14 @@ def login():
             result = user.do_register(username, password)
             # 存用户信息
             session['islogin'] = 'true'
-            session['userid'] = result.userid
+            # session['userid'] = result.userid
             session['username'] = username
             # session['nickname'] = result.nickename
             # session['role'] = result.role
             return session['username']
             # return 'user-pass!'
+    else:
+        return '跑偏了！'
 
 
 

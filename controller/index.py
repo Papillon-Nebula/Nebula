@@ -1,12 +1,17 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 from flask.json import jsonify
+from more.face import face
 
 index = Blueprint('index', __name__,)
 
 
-@index.route('/')
+
+@index.route("/")
 def home():
-    return render_template('index.html')
+    if face()==True:
+        return render_template('index.html')
+    else:
+        return redirect('/login')
 
 # @index.route('/getUserID', methods=['POST'])
 # def get_user_id():
