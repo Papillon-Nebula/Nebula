@@ -26,7 +26,8 @@ def ecode():
     code = gen_email_code()
     print(code)
     try:
-        send_email('papillon-nebula@outlook.com', code)
+        send_email(email, code)
+        session['ecode'] = code
         return 'send-pass'
     except:
         return 'send-fail'
@@ -36,18 +37,45 @@ def ecode():
 def login():
     if request.method == 'GET':
         return render_template('login.html')
-    else:
-        request.method == 'POST'
-        username = request.form.get("username")
-        password = request.form.get("password")
-        # password = hashlib.md5(password.encode()).hexdigest()       # 哈希值化 密码
-        # user = [u for u in Users if u.name==username]
-        # if username == user.name and password == user.password:
-        if username == 'mike' and password == '111':
-            return 'sucess!'
+    elif request.method == 'POST':
+        user = Users()
+        username = request.form.get('username').strip()
+        password = request.form.get('password').strip()
+        # ecode = request.form.get('ecode').strip()
+        
+        # 验证用户是否已经注册
+        if len(user.find_by_username(username))>0:
+            return 'user-repeated!'
+        
         else:
-            return 'fail!'
+            # 实现注册功能
+            password = hashlib.md5(password.encode()).hexdigest()
+            result = user.do_register(username, password)
+            # 存用户信息
+            session['islogin'] = 'true'
+            session['userid'] = result.userid
+            session['username'] = username
+            # session['nickname'] = result.nickename
+            # session['role'] = result.role
+            return session['username']
+            # return 'user-pass!'
+
+
+
+    # else:
+    #     request.method == 'POST'
+    #     if 
+    #     username = request.form.get("username")
+    #     password = request.form.get("password")
+    #     # password = hashlib.md5(password.encode()).hexdigest()       # 哈希值化 密码
+    #     # user = [u for u in Users if u.name==username]
+    #     # if username == user.name and password == user.password:
+    #     if username == 'mike' and password == '111':
+    #         return 'sucess!'
+    #     else:
+    #         return 'fail!'
         # if len(user)>0:
         #     user = user[0]
         # if user and user.password == password:
         #     session['user_id'] = user.id
+

@@ -13,7 +13,9 @@ class Users(DBase):
     #查询用户名，可用于注册时判断用户名是否已注册，也可用于登录校验
     def find_by_username(self, username):
         result = dbsession.query(Users).filter_by(username=username).all()
+        print(result)
         return result
+
     
     #实现注册，直次注册时用户只需要输入用户名和密码，所以只需要两个参数
     #注册时，在模型类中为其他字段尽力生成一 -些可用的值，虽不全面，但可用
@@ -21,12 +23,17 @@ class Users(DBase):
     def do_register(self, username, password):
         now = time.strftime('%Y-%m-%d %H:%M:%S')
         nickname = username.split('@')[0]       #默认将邮箱账号前缀作为呢称
-        # avatar = str(random.randint(1,15))      #从15张头像图片中随机选择一张
-        user = Users(username=username, password=password, role='user', nickname=nickname, avatar=avatar+'.png', createtime=now, updatetime=now)
+        avatar = str(random.randint(1,9))      #从15张头像图片中随机选择一张
+        user = Users(username=username, password=password, role='user', nickname=nickname, avatar=avatar+'.jpg', createtime=now, updatetime=now)
         dbsession.add(user)
         dbsession.commit()
         return user
 
+
+    # def find_by_userid(self, userid):
+    #     row = dbsession.query(Users).filter_by(userid=userid).first()
+    #     return row
+    
     # def find_user_by_id(self, userid):
     #     row = dbsession.query(Users).filter(Users.userid == userid).first()
     #     return row

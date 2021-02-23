@@ -14,8 +14,8 @@ Base = declarative_base()
 
 engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+    
-        "qhpG5ItfL6ybaSaM"
-        # "eTiRzkxyAgOtANbJ"
+        # "qhpG5ItfL6ybaSaM"
+        "eTiRzkxyAgOtANbJ"
         "@localhost:3306/nebula?charset=utf8",
         max_overflow=0,
         pool_size=5,

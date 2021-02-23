@@ -24,7 +24,7 @@ app = Flask(__name__,
 )
 # app.config['SECRET_KEY'] = '123'
 app.secret_key = '2204'
-print(app.config)   # 查看配置文件
+# print(app.config)   # 查看配置文件
 app.config.from_object(settings)
 
 # 使用集成方法处理 SQLAlchemy
@@ -95,12 +95,12 @@ print(db)
 
 if __name__ == "__main__":
     from controller.index import *
-    from module.models import *
-    from controller.login import *
-    from module.users import *
     app.register_blueprint(index)
+    from controller.login import *
     app.register_blueprint(loginer)
+    from module.models import *
     # app.register_blueprint(models)
+    from module.users import *
     app.register_blueprint(users)
 
     app.run(
