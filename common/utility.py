@@ -1,4 +1,5 @@
-import random, string
+from os import times
+import random, string, time
 from typing import Sized, Text
 from PIL import Image, ImageFont, ImageDraw
 from io import BytesIO
@@ -88,3 +89,68 @@ def gen_email_code():
 # code = gen_email_code()
 # print(code)
 # send_email('papillon-nebula@outlook.com', code)
+
+
+# 压缩图片， 通过参数 width 指定压缩后的图片大小
+def compress_image(source, dest, width):
+    from PIL import Image
+    # 如果图片宽度大于1200， 则调整为1200的宽
+    im = Image.open(source)
+    x, y = im.size
+    if x > width:
+        # 等比缩放
+        ys = int(y * width / x)
+        xs = width
+        # 调整当前图片的尺寸（同时也会压缩大小）
+        temp = im.resize((xs, ys), Image.ANTIALIAS)
+        # 将图片保存并使用80%的质量进行压缩
+        temp.save(dest, quality=80)
+    # 如果尺寸小于指定宽度则不缩减尺寸，只压缩保存
+    else:
+        im.save(dest, quality=80)
+
+
+# 解析文章内容中的图片地址
+def parse_image_url(content):
+    import re
+    temp_list = re.findall('<img src="(.+?)"', content)     # 非贪婪模式下的正则表达式（贪婪：按照最大（长）值进行匹配）
+    url_list = []
+    for url in temp_list:
+        # 如果图片类型为 gif ， 则直接跳过， 不对其进行处理
+        if url.lower().endswith('.gif'):
+            continue
+        url_list.append(url)
+    return url_list
+
+# 远程下载指定URL地址的图片，并保存到临时目录中
+def download_image(url, dest):
+    import requests
+    response = requests.get(url)
+    with open(file=dest, mode='wb') as file:
+        file.write(response.content)
+
+# 解析列表中的图片URL地址并生成缩略图，返回缩略图名称
+def generate_thumb(url_list):
+    # 根据URL 地址解析初期文件名和域名
+    # 通常建议使用文章内容中的第一张土拍你来生成缩略图
+    # 先遍历 url_list，查找里面是否存在本地上传图片，找到及处理，代码运行结束
+    for url in url_list:
+        if url.startswith('/upload/'):
+            filename = url.split('/')[-1]
+            # 找到本地图片后对其进行压缩处理，设置缩略图宽度为400像素即可
+            compress_image('./resource/upload/' + filename,
+                            './resource/thumb/' + filename, 400)
+            return filename
+
+    # 如果在内容中没有找到本地图片，则需要先将王略图片下载到本地再处理
+    # 直接将第一张图片作为缩略图， 并生成基于时间戳的标准文件名
+    url = url_list[0]
+    filename = url.split('/')[-1]
+    suffix = filename.split('.')[-1]
+    thumbname = times.strftime('%Y%m%d_%H%M%S.' + suffix)
+    download_image(url, './resource/download/' + thumbname)
+    compress_image('./resource/download/' + thumbname, './resource/thumb/' + thumbname, 400)
+
+    return thumbname        # 返回当前缩略图的文件名
+
+# url = 'https://spyre-theme.bitbucket.io/v1.4.0/assets/img/backgrounds/bg-10.jpg'
