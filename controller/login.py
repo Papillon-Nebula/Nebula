@@ -65,7 +65,7 @@ def login():
             session['username'] = username
             # session['nickname'] = result.nickename
             # session['role'] = result.role
-            return session['username']
+            return 'Welcome to Nebula,' + session['username']
             # return 'user-pass!'
     else:
         return '跑偏了！'
