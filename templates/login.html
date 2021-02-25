@@ -33,7 +33,7 @@
                     <form style="margin: 30px;", method="POST" action="">
                         <div class="form-group">
                         <label for="username">username</label>
-                        <input type="text" class="form-control" id="exampleCheck1" name="username">
+                        <input type="text" class="form-control" id="exampleCheck1" name="username" onblur="user_identification()">
                         </div>
                         <!-- <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
@@ -55,6 +55,21 @@
         </div>
     </div>
     
+
+<script type="text/javascript">
+    function user_identification(){
+        $.post({
+            url: "/login",
+            type: post,
+            data: {'name': $("user_identification").val()},
+            success: function (data, status){
+                alert(data);
+                alert(status);
+            }
+        })
+    }
+
+</script>
 </body>
 
 </html>

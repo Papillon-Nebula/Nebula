@@ -71,6 +71,9 @@ def login():
         return '跑偏了！'
 
 
+def user_identification():
+    if name is None:
+        return 'qingshuruyonghuming '
 
     # else:
     #     request.method == 'POST'
