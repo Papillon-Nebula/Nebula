@@ -76,7 +76,7 @@ def send_email(receiver, ecode):
     smtpObj = SMTP_SSL('smtp.qq.com')       # 建议与QQ邮件服务器的连接
     # smtpObj = SMTP('smtp.qq.com')       # 不是 SSL 方式连接的邮箱
     # 通过你的邮箱账号和获取到的授权码登录QQ邮箱
-    smtpObj.login(user='1057324546@qq.com', password='dkjjmqheyetebedd')      # 密码不正确需调整
+    smtpObj.login(user='1057324546@qq.com', password='dkjjmqheyetebedd')      # 密码为生成的密码串
     # 指定发件人，收件人和邮件内容
     smtpObj.sendmail(sender, receiver, str(message))
     smtpObj.quit()

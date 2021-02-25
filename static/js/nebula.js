@@ -26,3 +26,27 @@ function doSendMail(){
         }
     })
 }
+
+
+
+function user_identification(){
+    // $.post({
+    //     url: "/login",
+    //     type: post,
+    //     data: {'name': $("user_identification").val()},
+    //     success: function (data, status){
+    //         alert(data);
+    //         alert(status);
+    //     }
+    // })
+    var username = document.getElementsByName("username");
+	if (1 == 1){
+        alert('nihao!');
+    }
+    // $.post('/login', 'username='+ username, function{
+    // xmlhttp.open("POST","/login",true);
+    // })
+        
+    // alert('nihao !')
+}
+    
