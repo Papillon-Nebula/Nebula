@@ -5,7 +5,7 @@ from sqlalchemy import engine,create_engine
 from sqlalchemy.sql.selectable import FromClause
 from controller.index import index
 from common.database import dbconnect
-from common.users import Users
+from common.models import Users
 
 engine = create_engine(
         "mysql+pymysql://debian-sys-maint:"+

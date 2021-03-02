@@ -5,7 +5,7 @@ from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, Uniq
 from sqlalchemy.orm import session
 from sqlalchemy.orm.session import sessionmaker
 from sqlalchemy.orm import scoped_session
-from sqlalchemy.sql.expression import false
+from sqlalchemy.sql.expression import column, false
 from sqlalchemy.sql.functions import user
 from flask import Blueprint
 # models = Blueprint('models',__name__)
@@ -38,6 +38,12 @@ class Users(Base):
     )
 
     
+
+class Article(Base):
+    __tablename__= 'article'
+    id = Column(Integer, primary_key = True)
+    title = Column(String(32))
+
 
 def create_table():
     Base.metadata.create_all(engine)
