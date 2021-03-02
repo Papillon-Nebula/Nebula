@@ -45,11 +45,14 @@ class Article(Base):
 
 # ret = session.query(Cms_Article.id, Cms_Article.title, Article.content, Cms_Article.author,Cms_Article.description, Cms_Article.keywords).filter(Cms_Article.id ==396026).first()
 
-ret = session.query(Cms_Article.id,Cms_Article.title, Article.content).join(Article, Article.articleId==Cms_Article.id).filter(Cms_Article.id == 332542).first()
-# ret = session.query(Cms_Article).filter(Cms_Article.id == 332542).first()
+# ret = session.query(Cms_Article.id,Cms_Article.title, Article.content).join(Article, Article.articleId==Cms_Article.id).filter(Cms_Article.id == 332542).first()
+ret = session.query(Cms_Article, Article).join(Article, Article.articleId==Cms_Article.id).limit(10).all()
+
+for Cms_Article, Article in ret:
+    print(Cms_Article.id,Cms_Article.title,Cms_Article.author,Article.content)
 
 
-print(ret)
+# print(ret)
 # print(ret.__dict__.items())
 
 
