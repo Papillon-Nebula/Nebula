@@ -28,25 +28,21 @@ function doSendMail(){
 }
 
 
-
 function user_identification(){
-    // $.post({
-    //     url: "/login",
-    //     type: post,
-    //     data: {'name': $("user_identification").val()},
-    //     success: function (data, status){
-    //         alert(data);
-    //         alert(status);
-    //     }
-    // })
-    var username = document.getElementsByName("username");
-	if (1 == 1){
-        alert('nihao!');
+    var name = $('input[name=username]').val()
+    username = console.log(name);
+    if(name!=""){
+        $.ajax({
+            url:'/login',
+            type:'POST',
+            data:{"username": $('input[name="username"]').val(),"password":$('input[name="password"]').val()},
+            success: function(res){
+                alert(res)
+            },error:function(){
+                alert("系统貌似遇到了一些问题！");
+            }
+        });
     }
-    // $.post('/login', 'username='+ username, function{
-    // xmlhttp.open("POST","/login",true);
-    // })
-        
-    // alert('nihao !')
+    else
+    {alert("请验证你的用户名！")};
 }
-    

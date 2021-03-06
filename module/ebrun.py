@@ -1,26 +1,33 @@
-from sqlalchemy.ext.declarative.api import declarative_base
-from sqlalchemy.orm import scoped_session
-from sqlalchemy.orm.session import sessionmaker
-from sqlalchemy import engine, create_engine
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index
-import datetime
-from sqlalchemy.sql.expression import column
-from sqlalchemy.sql.schema import Column
-from sqlalchemy.sql.type_api import INTEGERTYPE
+# from sqlalchemy.ext.declarative.api import declarative_base
+# from sqlalchemy.orm import scoped_session
+# from sqlalchemy.orm.session import sessionmaker
+# from sqlalchemy import engine, create_engine
+# from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index
+# import datetime
+# from sqlalchemy.sql.expression import column
+# from sqlalchemy.sql.schema import Column
+# from sqlalchemy.sql.type_api import INTEGERTYPE
 
-engine = create_engine("mysql+pymysql://ebtest:Gzppf2tIoeHdGg@192.168.2.223:3306/cms?charset=utf8", echo=True)
+# engine = create_engine("mysql+pymysql://debian-sys-maint:eTiRzkxyAgOtANbJ@localhost:3306/nebula?charset=utf8", echo=True)
 
-Base = declarative_base()
-session = sessionmaker(engine)
-session = scoped_session(session)
+# Base = declarative_base()
+# session = sessionmaker(engine)
+# session = scoped_session(session)
+from flask.blueprints import Blueprint
+from sqlalchemy import Table, MetaData
+from common.database import dbconnect
+import time, random
 
-class Cms_Article(Base):
+dbsession, md ,DBase = dbconnect()
+
+
+class Cms_Article(DBase):
     __tablename__ = 'cms_article'
-    id = Column(Integer, primary_key=True)
-    title = Column(String(32), index=True, nullable=False)
-    author = Column(String(32), index=True, nullable=False)
-    keywords = Column(String(32), index=True, nullable=False)
-    description = Column(String(32), index=True, nullable=False)
+    # id = Column(Integer, primary_key=True)
+    # title = Column(String(32), index=True, nullable=False)
+    # author = Column(String(32), index=True, nullable=False)
+    # keywords = Column(String(32), index=True, nullable=False)
+    # description = Column(String(32), index=True, nullable=False)
     
     # name = Column(String(32), index=True, nullable=False)
     # email = Column(String(32), unique=True)
@@ -34,9 +41,9 @@ class Cms_Article(Base):
 
 class Article(Base):
     __tablename__ = 'cms_articlecontent'
-    articleId = Column(Integer, primary_key=True)
-    # articleId = Column(Integer, ForeignKey('cms_article.id'))
-    content = Column(String(32), index=True)
+    # articleId = Column(Integer, primary_key=True)
+    # # articleId = Column(Integer, ForeignKey('cms_article.id'))
+    # content = Column(String(32), index=True)
     
 
 
@@ -46,10 +53,10 @@ class Article(Base):
 # ret = session.query(Cms_Article.id, Cms_Article.title, Article.content, Cms_Article.author,Cms_Article.description, Cms_Article.keywords).filter(Cms_Article.id ==396026).first()
 
 # ret = session.query(Cms_Article.id,Cms_Article.title, Article.content).join(Article, Article.articleId==Cms_Article.id).filter(Cms_Article.id == 332542).first()
-ret = session.query(Cms_Article, Article).join(Article, Article.articleId==Cms_Article.id).limit(10).all()
+# ret = session.query(Cms_Article, Article).join(Article, Article.articleId==Cms_Article.id).limit(10).all()
 
-for Cms_Article, Article in ret:
-    print(Cms_Article.id,Cms_Article.title,Cms_Article.author,Article.content)
+# for Cms_Article, Article in ret:
+#     print(Cms_Article.id,Cms_Article.title,Cms_Article.author,Article.content)
 
 
 # print(ret)
