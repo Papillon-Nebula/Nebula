@@ -21,8 +21,8 @@ import time, random
 dbsession, md ,DBase = dbconnect()
 
 
-class Cms_Article(DBase):
-    __tablename__ = 'cms_article'
+class Article(DBase):
+    __table__ = Table('article', md, autoload=True)
     # id = Column(Integer, primary_key=True)
     # title = Column(String(32), index=True, nullable=False)
     # author = Column(String(32), index=True, nullable=False)
@@ -39,13 +39,34 @@ class Cms_Article(DBase):
     #     Index('ix_id_name','name','email')
     # )
 
-class Article(Base):
-    __tablename__ = 'cms_articlecontent'
+
+    def find_article_by_id(id):
+        # ret = dbsession.query(Article).first()
+        ret = dbsession.query(Article).filter(Article.id == id).first()
+        return ret
+
+    def find_all(start,count):
+        # ret = dbsession.query(Article).first()
+        ret = dbsession.query(Article).order_by(Article.id.asc()).limit(count).offset(start).all()
+        return ret
+
+    def find_5(start,count):
+        # ret = dbsession.query(Article).first()
+        count = count
+        ret = dbsession.query(Article.id, Article.title).order_by(Article.id.asc()).limit(count).offset(start).all()
+        
+        return ret
+
+
+
+# class Article(DBase):
+#     __tablename__ = Table('cms_articlecontent', md, autoload=True)
     # articleId = Column(Integer, primary_key=True)
     # # articleId = Column(Integer, ForeignKey('cms_article.id'))
     # content = Column(String(32), index=True)
     
 
+# ret = dbsession.query(Cms_Article, Article).join(Article, Article.articleId==Cms_Article.id).limit(10).all()
 
     # def __repr__(self) -> str:
     #     return super().__repr__()
@@ -53,7 +74,6 @@ class Article(Base):
 # ret = session.query(Cms_Article.id, Cms_Article.title, Article.content, Cms_Article.author,Cms_Article.description, Cms_Article.keywords).filter(Cms_Article.id ==396026).first()
 
 # ret = session.query(Cms_Article.id,Cms_Article.title, Article.content).join(Article, Article.articleId==Cms_Article.id).filter(Cms_Article.id == 332542).first()
-# ret = session.query(Cms_Article, Article).join(Article, Article.articleId==Cms_Article.id).limit(10).all()
 
 # for Cms_Article, Article in ret:
 #     print(Cms_Article.id,Cms_Article.title,Cms_Article.author,Article.content)

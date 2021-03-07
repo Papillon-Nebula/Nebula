@@ -104,6 +104,8 @@ if __name__ == "__main__":
     # app.register_blueprint(my_ajax)
     from controller.nebula_api import *
     app.register_blueprint(nebula_api)
+    from controller.article_list import *
+    app.register_blueprint(article_list)
 
     app.run(
         # host='0.0.0.0', port='8080',       # IP定义为 0.0.0.0 后，可外网通过IP地址访问，默认只能本机访问

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <style>
+        .row div {
+            border: solid 2px green;
+        } 
+        .main maint{
+            border: solid 2px red;
+        } 
+        .main {
+            border: solid 2px rgb(0, 60, 128);
+        }
+    </style>
+    <!-- <script>
+        // document.getElementById('id');
+        $("#tishi").click(function(){
+            alert('ksdjkfjkjk');
+        });
+    </script> -->
+
+</head>
+<body>
+    <div class="container-fluid" style="border: solid 2px red;">
+        <header class="container" style="border: solid 2px rgb(7, 8, 1);">
+            <nav  class="" style="border: solid 2px rgb(255, 0, 234);">
+                <a href="index.asp">Home</a>
+                <a href="html5_meter.asp">Previous</a>
+                <a href="html5_noscript.asp">Next</a>
+            </nav>
+        </header>
+        <main class="container">
+            <div class="row" style="height: auto; border: solid 2px blue;">
+                {% for article in result %}
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 " style="padding: 25px ;">
+                    <div class="row">
+                        <div class="col-12 title" style="font-size: 24px; "><strong>{{article.title}}</strong></div>
+                        <div class="col-6 author" style="color: blue;">{{article.author}}</div>
+                        <div class="col-3 offset-3 datatime">{{article.updatetime}}</div>
+                    </div>
+                    <div style="margin-top: 25px;">{{article.content}}</div>
+
+                </div>
+                {% endfor %}
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 " style="padding: 20px;">2224</div>
+            </div>
+            
+            
+        </main>
+    </div>
+<script>
+    // document.getElementById('id');
+    $("#tishi").click(function(){
+        alert('ksdjkfjkjk');
+    });
+</script>
+</body>
+
+</html>
