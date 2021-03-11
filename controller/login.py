@@ -50,15 +50,15 @@ def login():
         password = request.form.get('password', None).strip()
         print(username)
         if username == '':
-            return '姓名不能为空'
+            return '请输入铭牌！'
         elif len(user.find_by_username(username))>0:
             if request.form.get('password') == '':
             # print(user.find_password_by_username(username)[0])
             # password = hashlib.md5(password.encode()).hexdigest()
             # print(password)
                 # html = '您即将登录'+ username
-                html =  '密码不能为空'
-                return html
+                result =  '请输入指令！'
+                return result
             else:
                 password = hashlib.md5(password.encode()).hexdigest()
                 if password == user.find_password_by_username(username)[0]:
