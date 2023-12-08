@@ -1,4 +1,4 @@
-from flask import Flask, app, render_template, request, redirect
+from flask import Flask, app, render_template, request, redirect, current_app
 from flask.globals import session
 from flask.helpers import flash, url_for
 import cv2
@@ -7,7 +7,7 @@ import datetime
 from sqlalchemy import create_engine, engine
 import sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.ext.declarative import api, declarative_base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Index
 from sqlalchemy.orm import session
 from sqlalchemy.orm.session import sessionmaker
@@ -28,7 +28,7 @@ app.secret_key = '2204'
 app.config.from_object(settings)
 
 # 使用集成方法处理 SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://debian-sys-maint:eTiRzkxyAgOtANbJ@localhost:3306/nebula?charset=utf8' # "NbiTAGtSBbVbjyNI"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:123456@localhost:3306/nebula?charset=utf8' # "NbiTAGtSBbVbjyNI"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)   # 实例化 db 对象
         
@@ -102,10 +102,10 @@ if __name__ == "__main__":
     app.register_blueprint(article)
     # from controller.my_ajax import *
     # app.register_blueprint(my_ajax)
-    from controller.nebula_api import *
-    app.register_blueprint(nebula_api)
-    from controller.article_list import *
-    app.register_blueprint(article_list)
+    # from controller.nebula_api import *
+    # app.register_blueprint(nebula_api)
+    # from controller.article_list import *
+    # app.register_blueprint(article_list)
 
     app.run(
         # host='0.0.0.0', port='8080',       # IP定义为 0.0.0.0 后，可外网通过IP地址访问，默认只能本机访问

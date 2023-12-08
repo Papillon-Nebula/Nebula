@@ -10,7 +10,10 @@ def face():
     人脸识别
     """
     cap = cv2.VideoCapture(0)
-    faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    if not cap.isOpened():
+        print("Error: Could not open camera device.")
+        exit()
+    faceCascade = cv2.CascadeClassifier("more/haarcascade_frontalface_default.xml")
     while (True):
         # 循环捕获每一帧
         ret, frame = cap.read()
