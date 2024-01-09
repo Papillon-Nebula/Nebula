@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>星际蓝图</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        video {
+            position: fixed;
+            right: 0px;
+            bottom: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            height: auto;
+            width: auto;
+            /*加滤镜*/
+            /* filter: blur(1px);        /* 背景模糊设置 */
+            /* -webkit-filter: grayscale(100%);    */
+            /* filter:grayscale(100%); 背景灰度设置  */
+            /* background: #000; */
+            z-index: -11
+        }
+        input{
+            border: #ffffff;
+            width: 100%;
+            height: 50px;
+            border-radius: 15px;
+            font-size: 25px;
+            padding: 0;
+            opacity: 0.5;
+        }
+    </style>
+    
+    <script>
+        function displayTimeAndCalendar() {
+          var now = new Date();
+          var hours = now.getHours();
+          var minutes = now.getMinutes();
+          var seconds = now.getSeconds();
+          var date = now.getDate();
+          var month = now.getMonth() + 1; // 月份从0开始，所以要加1
+          var year = now.getFullYear();
+          var dayOfWeek = now.getDay(); // 获取星期几，0代表星期日，1代表星期一，以此类推
+          var dayName = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"][dayOfWeek]; // 星期几的名称
+          // 添加前导零
+          hours = (hours < 10 ? "0" : "") + hours;
+          minutes = (minutes < 10 ? "0" : "") + minutes;
+          seconds = (seconds < 10 ? "0" : "") + seconds;
+          var timeString = hours + ":" + minutes + ":" + seconds; // 24小时制时间
+          
+          var calendarString = year + "年" + month + "月" + date + "日" + " " + dayName; // 添加星期几
+    
+          document.getElementById("time").textContent = timeString;
+          document.getElementById("calendar").textContent = calendarString;
+        }
+    </script>
+</head>
+
+<body onload="displayTime()">
+    <div>
+        <video autoplay loop muted>
+            <source src="../static/video/天空.mp4" type="video/mp4" />
+        </video>
+        <div class="container">
+            <div class="row">
+                <div class="col-4 offset-4" style="padding: 10% 0 0 0; text-align: center;"><span class="fw-bold" style="font-size: 100px; color: #ffffff;" id="time"></span></div>
+                <div class="col-4 offset-4" style="text-align: center;"><span class="fw-bold" style="font-size: 18px; color: #ffffff;" id="calendar"></span></div>
+                <div class="col-6 offset-3" >
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        setInterval(displayTimeAndCalendar, 1000); // 每秒更新一次时间、日期和农历
+        Vue.config.productionTip = false
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

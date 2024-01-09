@@ -8,11 +8,11 @@ index = Blueprint('index', __name__, template_folder='templates')
 
 @index.route("/")
 def home():
-    # return render_template('index.html')
-    if face()==True:
-        return render_template('index.html')
-    else:
-        return redirect('/login')
+    return render_template('index1.html')
+    # if face()==True:
+    #     return render_template('index.html')
+    # else:
+    #     return redirect('/login')
 
 # @index.route('/getUserID', methods=['POST'])
 # def get_user_id():
