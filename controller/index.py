@@ -2,12 +2,13 @@ from flask import Blueprint, render_template, request, redirect
 from flask.json import jsonify
 from more.face import face
 
-index = Blueprint('index', __name__,)
+index = Blueprint('index', __name__, template_folder='templates')
 
 
 
 @index.route("/")
 def home():
+    # return render_template('index.html')
     if face()==True:
         return render_template('index.html')
     else:
