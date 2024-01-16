@@ -23,7 +23,8 @@
             /* background: #000; */
             z-index: -11
         }
-        input{
+
+        input {
             border: #ffffff;
             width: 100%;
             height: 50px;
@@ -33,28 +34,28 @@
             opacity: 0.5;
         }
     </style>
-    
+
     <script>
         function displayTimeAndCalendar() {
-          var now = new Date();
-          var hours = now.getHours();
-          var minutes = now.getMinutes();
-          var seconds = now.getSeconds();
-          var date = now.getDate();
-          var month = now.getMonth() + 1; // 月份从0开始，所以要加1
-          var year = now.getFullYear();
-          var dayOfWeek = now.getDay(); // 获取星期几，0代表星期日，1代表星期一，以此类推
-          var dayName = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"][dayOfWeek]; // 星期几的名称
-          // 添加前导零
-          hours = (hours < 10 ? "0" : "") + hours;
-          minutes = (minutes < 10 ? "0" : "") + minutes;
-          seconds = (seconds < 10 ? "0" : "") + seconds;
-          var timeString = hours + ":" + minutes + ":" + seconds; // 24小时制时间
-          
-          var calendarString = year + "年" + month + "月" + date + "日" + " " + dayName; // 添加星期几
-    
-          document.getElementById("time").textContent = timeString;
-          document.getElementById("calendar").textContent = calendarString;
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var date = now.getDate();
+            var month = now.getMonth() + 1; // 月份从0开始，所以要加1
+            var year = now.getFullYear();
+            var dayOfWeek = now.getDay(); // 获取星期几，0代表星期日，1代表星期一，以此类推
+            var dayName = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"][dayOfWeek]; // 星期几的名称
+            // 添加前导零
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+            var timeString = hours + ":" + minutes + ":" + seconds; // 24小时制时间
+
+            var calendarString = year + "年" + month + "月" + date + "日" + " " + dayName; // 添加星期几
+
+            document.getElementById("time").textContent = timeString;
+            document.getElementById("calendar").textContent = calendarString;
         }
     </script>
 </head>
@@ -64,11 +65,13 @@
         <video autoplay loop muted>
             <source src="../static/video/天空.mp4" type="video/mp4" />
         </video>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-4 offset-4" style="padding: 10% 0 0 0; text-align: center;"><span class="fw-bold" style="font-size: 100px; color: #ffffff;" id="time"></span></div>
-                <div class="col-4 offset-4" style="text-align: center;"><span class="fw-bold" style="font-size: 18px; color: #ffffff;" id="calendar"></span></div>
-                <div class="col-6 offset-3" >
+                <div class="col-4 offset-4" style="padding: 5% 0 0 0; text-align: center;"><span class="fw-bold display-1"
+                        style="color: #ffffff;" id="time"></span></div>
+                <div class="col-4 offset-4" style="text-align: center;"><span class="fw-bold"
+                        style="font-size: 18px; color: #ffffff;" id="calendar"></span></div>
+                <div class="col-4 offset-4">
                     <input type="text">
                 </div>
             </div>
